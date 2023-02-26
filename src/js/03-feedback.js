@@ -4,24 +4,24 @@ const form = document.querySelector('.feedback-form');
 const emailInput = form.elements.email;
 const messageInput = form.elements.message;
 
-function saveFormElsToLocalStorage() {
+function saveFormEls() {
   const formEls = { email: emailInput.value, message: messageInput.value };
   localStorage.setItem('feedback-form-state', JSON.stringify(formEls));
 }
 
-form.addEventListener('input', saveFormElsToLocalStorage);
+form.addEventListener('input', saveFormEls);
 
-function parsedformState() {
-    const formStateString = localStorage.getItem('feedback-form-state');
-    if (formStateString) {
-    const { email, message } = JSON.parse(formStateString);
+function parsedformEls() {
+    const formElsString = localStorage.getItem('feedback-form-state');
+    if (formElsString) {
+    const { email, message } = JSON.parse(formElsString);
     emailInput.value = email;
     messageInput.value = message;
     console.log({ email, message });
   }
 } 
 
-document.addEventListener('DOMContentLoaded', parsedformState);
+document.addEventListener('DOMContentLoaded', parsedformEls);
 
 function onSubmit(e) {
   e.preventDefault();
